@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Magnifying tool</title>
+        <link rel="preload" as="image" href="/images/1.png" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <h2 class="greeting">A Simple Magnifying Tool</h2>
+            <p class="sub">Click on the image to enable zoom</p>
+            <div class="bdr">
+                <div class="box">
+                    <div class="img-bdr">
+                        <div class="img-bcg">
+                            <div class="img-box">
+                                <img src="images/1.png" draggable="false" alt="Product picture of {See product title}" class="img-src">
+                                <div class="img-lens" aria-hidden="true"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-bdr">
+                        <div class="info-box">
+                            <span class="info-id" id="product_id">ac-SDEY23-HJ-d34454-P06tr3s00-1</span>
+                            <h3 class="info-title">Uno Reverse Ultimatum Glove</h3>
+                            <span class="info-cost" id="product_cost">$999</span>
+                            <p class="info-abt">
+                                The Uno Reverse Ultimatum Glove is a one of a kind product forged from the emblem of
+                                solid gold cast over by a fine layer of equilateral bronze. This glove is a unique 
+                                game changing technology invented to re-iterate the magnificence of the well known 
+                                but quite underated and undervalued gameplay move: 
+                                UNO REVERSE.
+                                <br>
+                                It is not a real product..merely gibberish.
+                            </p>
+                            <button type="button" class="info-buy" id="buy_now" 
+                                onclick="window.open('https://acbennny.netlify.app')"
+                                ondblclick="window.open('https://acbennny.netlify.app')"
+                            >Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

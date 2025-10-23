@@ -1,0 +1,369 @@
+/*********************************************************************
+ * Styling of the "Magnifying tool" page
+ * 
+ * @author (Anyanwu Benedict Chuwkwuemeka)
+ * @version 0.01
+*********************************************************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bcg-handle) var(--bcg-trpnt);
+}
+
+html:root
+{
+    --bcg-base: #38776d;
+    --bcg-bright: #ffffff;
+    --bcg-handle: #cdcdcdcd;
+    --bcg-shade: #77777777;
+    --bcg-trpnt: #00000000;
+    --bcg-white: #eafff0;
+    --font-clr-heavy: #ffffff;
+    --font-clr-mid: #cccccc;
+    --font-shadow: #77777733;
+    --transition-flow: 250ms;
+    --transition-delay: 100ms;
+    --item_max_w: 50rem;
+    --item_pd: 1rem;
+    --item_bdr_rad: 0.625rem;
+    --img_w: 16.25rem;
+    --img_h: 30rem;
+}
+
+html
+{
+    background-color: var(--bcg-base);
+    -moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    scroll-behavior: smooth;
+}
+
+body
+{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100svh;
+    min-height: 100vh;
+    background-color: var(--bcg-base);
+}
+
+@supports(-webkit-tap-highlight-color: var(--bcg-trpnt))
+{
+    body
+    {
+        -webkit-tap-highlight-color: var(--bcg-trpnt);
+    }
+}
+
+@supports(-webkit-user-drag: none)
+{
+    img
+    {
+        -webkit-user-drag: none;
+    }
+}
+
+button
+{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bcg-trpnt);
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+button:active
+{
+    scale: 0.975;
+}
+
+img
+{
+    -moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+
+.wrapper
+{
+    width: 100%;
+    padding: var(--item_pd);
+}
+
+.wrapper .greeting
+{
+    width: 100%;
+    margin-bottom: 0.3125rem;
+    color: var(--font-clr-heavy);
+    font-size: 1.875rem;
+    text-align: center;
+}
+
+.wrapper .sub
+{
+    width: 100%;
+    margin-bottom: 1.5rem;
+    color: var(--font-clr-mid);
+    font-size: 1.125rem;
+    text-align: center;
+}
+
+.wrapper .bdr
+{
+    width: 100%;
+}
+
+.bdr .box
+{
+    width: 100%;
+    max-width: var(--item_max_w);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: var(--item_pd);
+    border-radius: var(--item_bdr_rad);
+    background-color: var(--bcg-white);
+}
+
+
+/* --------- Product Image --------- */
+.box .img-bdr
+{
+    width: 50%;
+}
+
+.img-bdr .img-bcg
+{
+    width: 100%;
+    transition: all var(--transition-flow) ease-in-out;
+    transform-origin: top left;
+    cursor: pointer;
+}
+
+.img-bcg.active
+{
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    transform: translate(
+        calc(-1 * var(--offset-left)),
+        calc(-1 * var(--offset-top))
+    );
+}
+
+.img-bcg.fixed
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: none;
+}
+
+.img-bcg.active,
+.img-bcg.fixed
+{
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(2.5rem);
+    background-color: var(--bcg-shade);
+    cursor: crosshair;
+    z-index: 5;
+}
+
+html:has(.img-bcg.active) body,
+html:has(.img-bcg.fixed) body
+{
+    overflow: hidden;
+}
+
+.img-bcg.rough
+{
+    transition: none;
+}
+
+.img-bcg .img-box
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: var(--img_w);
+    max-height: var(--img_h);
+    margin: 0 auto;
+    aspect-ratio: 16/28;
+    pointer-events: none;
+}
+
+.img-bcg.fixed .img-box
+{
+    pointer-events: all;
+}
+
+.img-box::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -12.25%;
+    width: 125%;
+    height: 100%;
+    border-radius: var(--item_bdr_rad);
+    background-color: var(--bcg-white);
+    scale: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-flow) ease-in-out;
+    z-index: -1;
+}
+
+.img-bcg.active .img-box::before,
+.img-bcg.fixed .img-box::before
+{
+    scale: 1.125;
+    opacity: 1;
+    visibility: visible;
+}
+
+.img-box .img-src
+{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
+.img-box .img-lens
+{
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.img-bcg.fixed .img-lens 
+{
+    --lens_sz: 10rem;
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    box-shadow: 0 .375rem 1.125rem #00000040, inset 0 0 0 .25rem #ffffff50;
+    width: var(--lens_sz);
+    height: var(--lens_sz);
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 200%;
+    background-color: var(--bcg-white);
+    display: none;
+    z-index: 10;
+}
+
+.img-lens::after
+{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.125rem;
+    height: 0.125rem;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 -60px 0 #ffffff33, 0 3.75rem 0 #ffffff33, -60px 0 0 #ffffff33, 60px 0 0 #ffffff33;
+    border-radius: 0.125rem;
+}
+
+
+/* --------- Product Info --------- */
+.box .info-bdr
+{
+    width: 50%;
+    max-width: calc((100% - var(--img_w)));
+    padding-left: var(--item_pd);
+}
+
+.info-bdr .info-box
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-box .info-id
+{
+    width: 100%;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.info-box .info-title
+{
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-box .info-cost
+{
+    width: 100%;
+    margin-bottom: 0.625rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.info-box .info-abt
+{
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.info-box .info-buy
+{
+    width: 100%;
+    padding: var(--item_pd);
+    color: var(--font-clr-heavy);
+    font-weight: 500;
+    border-radius: var(--item_bdr_rad);
+    background-color: var(--bcg-base);
+    transition: all var(--transition-flow) ease-in-out;
+}
+
+
+
+@media only screen and (max-width: 48rem)
+{
+    .bdr .box
+    {
+        flex-direction: column;
+    }
+
+    .box .img-bdr,
+    .box .info-bdr
+    {
+        width: 100%;
+    }
+
+    .box .info-bdr
+    {
+        max-width: none;
+        padding-top: var(--item_pd);
+        padding-left: 0rem;
+    }
+}
+
+
+@media only screen and (max-width: 30.3125rem)
+{
+    .lens
+    {
+        --lens_sz: 10rem;
+    }
+}
