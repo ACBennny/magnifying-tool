@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://ac-magnifying-tool.netlify.app/*"
+  to = "https://magnify.abcx.fyi/:splat"
+  status = 301
+  force = true
